@@ -1,1 +1,1 @@
-console.log('Loaded!');
+alert("Hello. Your learning JavaScript");
