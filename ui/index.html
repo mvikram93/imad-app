@@ -1,8 +1,10 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
     <head>
         <link href="/ui/style.css" rel="stylesheet" />
 		<title> First Web App </title>
+		<script type="text/javascript" src="/ui/main.js">
+        </script>
     </head>
     <body>
         <div class="center">
@@ -13,7 +15,18 @@
             Hi! I am your Vikram. I am your first webapp.
         </div>
 	<h3> I made changes to the folder locally</h3>
-        <script type="text/javascript" src="/ui/main.js">
-        </script>
+        
+		<hr/>
+		<div >
+		Click this button to increase the count
+		<button  id="bottom">Click Me!</button>. The counter value <span id="count">0</span></div>
+		
+		<input type="text" value="name" id="name" placeholder="Name"/>
+		
+		<input type="submit" value="Submit" id="submit_btn" placeholder="Name"/>
+		<ul id="listItem">
+		
+		</ul>
+	
     </body>
 </html>
