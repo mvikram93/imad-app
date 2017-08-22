@@ -3,7 +3,7 @@ var morgan = require('morgan');
 var path = require('path');
 
 var app = express();
-var ps = require('pg').pool;
+var Ps = require('pg').pool;
 var config ={
     username: "mvikram93",
     database: "mvikram93",
@@ -15,7 +15,7 @@ app.use(morgan('combined'));
 app.set("title","My First App");
 
 
-var pool = new Pool(config);
+var pool = new Ps(config);
 app.get("/db",function(req,res){
     pool.query("select *from tbl_article",function(err,data){
        if(err){
