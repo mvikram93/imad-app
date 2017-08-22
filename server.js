@@ -25,7 +25,10 @@ app.get("/db",function(req,res){
            if(!data){
             res.status(500).send("No data");
         }else{
-            res.send(JSON.stringify(data.rows[0]));
+            i=0;
+            res.send(JSON.stringify(data.rows[i]));
+            i++;
+            
         }
        }
               
