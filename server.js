@@ -26,10 +26,10 @@ app.get("/db",function(req,res){
             res.status(500).send("No data");
         }else{
             //for(int i=0;i<rows.length;i++){
-     res.send(JSON.stringify(data.rows.size));
+    
             res.send(JSON.stringify(data.rows[0]));
             
-            res.send(JSON.stringify(data.rows[1]));
+
         //}
             
         }
