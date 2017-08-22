@@ -27,7 +27,7 @@ app.get("/db",function(req,res){
         }else{
             //for(int i=0;i<rows.length;i++){
           console.log("row length"+data.rows.size);
-            res.send(JSON.stringify(data.rows[i]));
+            res.send(JSON.stringify(data.rows[0]));
             
             res.send(JSON.stringify(data.rows[1]));
         //}
