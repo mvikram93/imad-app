@@ -3,8 +3,35 @@ var morgan = require('morgan');
 var path = require('path');
 
 var app = express();
+var ps = require('pg').pool;
+var config ={
+    username: "mvikram93",
+    database: "mvikram93",
+    host:"db.imad.hasura-app.io",
+    port :"5432",
+    password: process.env.DB_PASSWORD,
+};
 app.use(morgan('combined'));
 app.set("title","My First App");
+
+
+var pool = new Pool(config);
+app.get("/db",function(req,res){
+    pool.query("select *from tbl_article",function(err,data){
+       if(err){
+         res.status(500).send(err.toString());
+       } 
+       else{
+           if(!data){
+            res.status(500).send("No data");
+        }else{
+            res.send(JSON.stringify(data.rows[o]));
+        }
+       }
+              
+    });
+});
+
 app.get('/', function (req, res,next) {
   res.sendFile(path.join(__dirname, 'ui', 'index.html'));
 	console.log(req.originalUrl); 
@@ -18,6 +45,7 @@ app.param('value', function (req, res,next, value) {
   console.log('CALLED ONLY ONCE with', value);
 next();
 });
+
 app.get('/submit',function(req,res){ 
 	var name = req.query.name;
 	names.push(name);
