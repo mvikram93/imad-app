@@ -28,7 +28,7 @@ app.get("/db",function(req,res){
         }else{
             //for(int i=0;i<rows.length;i++){
         for (index = 0; index < data.rows.length; ++index) {
-    res.send(JSON.stringify(data.rows[index]));
+    res.write(JSON.stringify(data.rows[index]));
             }
           
 
