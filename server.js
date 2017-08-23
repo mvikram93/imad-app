@@ -16,17 +16,7 @@ app.set("title","My First App");
 
 
 var pool = new Pool(config);
-module.exports={
-    query:(text,params,callback)=>{
-        const start = Date.now;
-        return pool.query(text,params,(err,res)=>{
-        const duration = Date.now() - start
-      console.log('executed query', { text, duration, rows: res.rowCount })
-      callback(err, res);
 
-        });
-    }
-}
 app.get("/db",function(req,res){
     pool.query("select *from tbl_article",function(err,data){
        if(err){
@@ -48,7 +38,17 @@ app.get("/db",function(req,res){
               
     });
 });
+module.exports={
+    query:(text,params,callback)=>{
+        const start = Date.now;
+        return pool.query(text,params,(err,res)=>{
+        const duration = Date.now() - start
+      console.log('executed query', { text, duration, rows: res.rowCount })
+      callback(err, res);
 
+        });
+    }
+}
 app.get('/', function (req, res,next) {
   res.sendFile(path.join(__dirname, 'ui', 'index.html'));
 	console.log(req.originalUrl); 
