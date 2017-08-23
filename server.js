@@ -26,14 +26,7 @@ app.get("/db",function(req,res){
            if(!data){
             res.status(500).send("No data");
         }else{
-            //for(int i=0;i<rows.length;i++){
-        for (index = 0; index < data.rows.length; ++index) {
-    res.write(JSON.stringify(data.rows[index]));
-            }
-          
-
-        //}
-            
+    res.write(JSON.stringify(data.rows));
         }
        }
               
