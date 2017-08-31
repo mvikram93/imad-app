@@ -2,6 +2,7 @@ var express = require('express');
 var morgan = require('morgan');
 var path = require('path');
 var crypto = require('crypto');
+var bodyParser = require('body-parser');
 
 var app = express();
 var Pool = require('pg').Pool;
@@ -14,7 +15,7 @@ var config ={
 };
 app.use(morgan('combined'));
 app.set("title","My First App");
-
+app.use(bodyPasrser.json());
 
 var pool = new Pool(config);
 
@@ -61,6 +62,22 @@ function hash(inputString,salt){
 	var hashedString = crypto.pbkdf2Sync(inputString,salt,10000,512,'sha512');
 return hashedString.toString('hex');
 }
+app.post("/createuser",funtion(req,res){
+    var username= req.body.username;
+    var password = req.body.password;
+    
+    var salt = crypto.randomString(128).toString('hex');
+    var hashedPassword = hash(password,salt);
+    pool.query("INSERT INTO 'tbl_user_login' (username,password) values($1,$2)",[username,hashedPassword],function(err,result){
+        if(err){
+            res.status(500).send(err.toString());
+        }
+        else{
+            res.send("User Created and Inserted");
+        }
+    })
+    
+});
 app.get("/hash/:input",function(req,res){
     var hashedString = hash(req.params.input,"I-Love-Vinitha");
     res.send(hashedString);
