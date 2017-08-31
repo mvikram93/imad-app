@@ -71,7 +71,7 @@ return hashedString.toString('hex');
 		
 	var salt = crypto.randomBytes(128).toString('hex');
 	var hashedPassword = hash(password,salt);
-    pool.query("INSERT INTO 'tbl_user_login' (username,password) values($1,$2)",[username,hashedPassword],function(err,result){
+    pool.query("INSERT INTO tbl_user_login (username,password) values($1,$2)",[username,hashedPassword],function(err,result){
            if(err){
          res.status(500).send(err.toString());
        } 
