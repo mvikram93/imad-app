@@ -75,7 +75,7 @@ app.post("/createuser",funtion(req,res){
         else{
             res.send("User Created and Inserted");
         }
-    })
+    });
     
 });
 app.get("/hash/:input",function(req,res){
