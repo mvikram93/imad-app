@@ -57,6 +57,10 @@ app.param('value', function (req, res,next, value) {
   console.log('CALLED ONLY ONCE with', value);
 next();
 });
+function hash(inputString,salt){
+	var hashedString = crypto.pbkdf2Sync(inputString,salt,10000,512,'sha512');
+return hashedString.toString('hex');
+}
 app.get("/hash/:input",function(req,res){
     var hashedString = hash(req.params.input);
     res.send(hashedString);
