@@ -1,6 +1,7 @@
 var express = require('express');
 var morgan = require('morgan');
 var path = require('path');
+var crypto = require('crypto');
 
 var app = express();
 var Pool = require('pg').Pool;
@@ -55,6 +56,10 @@ app.get('/', function (req, res,next) {
 app.param('value', function (req, res,next, value) {
   console.log('CALLED ONLY ONCE with', value);
 next();
+});
+app.get("/hash/:input",function(req,res){
+    var hashedString = hash(req.params.input);
+    res.send(hashedString);
 });
 
 app.get('/submit',function(req,res){ 
