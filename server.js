@@ -62,6 +62,7 @@ function hash(inputString,salt){
 	var hashedString = crypto.pbkdf2Sync(inputString,salt,10000,512,'sha512');
 return hashedString.toString('hex');
 }
+
 app.post("/createuser",funtion(req,res){
     var username= req.body.username;
     var password = req.body.password;
@@ -69,12 +70,13 @@ app.post("/createuser",funtion(req,res){
     var salt = crypto.randomString(128).toString('hex');
     var hashedPassword = hash(password,salt);
     pool.query("INSERT INTO 'tbl_user_login' (username,password) values($1,$2)",[username,hashedPassword],function(err,result){
-        if(err){
-            res.status(500).send(err.toString());
+           if(err){
+         res.status(500).send(err.toString());
+       } 
+       else{
+    res.send("User Created");
         }
-        else{
-            res.send("User Created and Inserted");
-        }
+    
     });
     
 });
