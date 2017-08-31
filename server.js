@@ -15,7 +15,7 @@ var config ={
 };
 app.use(morgan('combined'));
 app.set("title","My First App");
-app.use(bodyPasrser.json());
+app.use(bodyParser.json());
 
 var pool = new Pool(config);
 
