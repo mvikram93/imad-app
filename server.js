@@ -67,7 +67,7 @@ app.post("/createuser",funtion(req,res){
     var username= req.body.username;
     var password = req.body.password;
     
-    var salt = crypto.randomString(128).toString('hex');
+    var salt = crypto.randomBytes(128).toString('hex');
     var hashedPassword = hash(password,salt);
     pool.query("INSERT INTO 'tbl_user_login' (username,password) values($1,$2)",[username,hashedPassword],function(err,result){
            if(err){
@@ -76,10 +76,9 @@ app.post("/createuser",funtion(req,res){
        else{
     res.send("User Created");
         }
-    
     });
-    
 });
+
 app.get("/hash/:input",function(req,res){
     var hashedString = hash(req.params.input,"I-Love-Vinitha");
     res.send(hashedString);
