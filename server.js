@@ -81,7 +81,7 @@ return hashedString.toString('hex');
 	});
 
 app.get("/hash/:input",function(req,res){
-    var hashedString = hash(req.params.input,"I-Love-Vinitha");
+    var hashedString = hash(req.params.input,"asbc");
     res.send(hashedString);
 });
 
