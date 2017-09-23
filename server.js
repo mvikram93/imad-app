@@ -62,7 +62,7 @@ next();
 
 function hash(inputString,salt){
 	var hashedString = crypto.pbkdf2Sync(inputString,salt,10000,512,'sha512');
-	console.log(hashedString.toString('hex'));
+    //console.log(hashedString.toString('hex'));
 	return ["pbkdf2","10000",salt,hashedString.toString('hex')].join('$');
 }
 
