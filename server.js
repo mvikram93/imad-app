@@ -60,6 +60,7 @@ next();
 });
 function hash(inputString,salt){
 	var hashedString = crypto.pbkdf2Sync(inputString,salt,10000,512,'sha512');
+	console.log(hashedString.toString('hex'));
 return hashedString.toString('hex');
 }
 
